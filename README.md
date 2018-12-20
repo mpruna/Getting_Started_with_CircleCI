@@ -186,7 +186,7 @@ The dependencies are defined by setting the requires: key as shown. The deploy: 
 
 The illustrated example workflow runs a common build job, then fans-out to run a set of acceptance test jobs in parallel, and finally fans-in to run a common deploy job
 
-![IMG](https://github.com/mpruna/Getting_Started_with_CircleCI/blob/master/images/parallel_execution.png)
+![IMG](https://github.com/mpruna/Getting_Started_with_CircleCI/blob/master/images/parallel_workflow.png)
 
 ```
 workflows:
