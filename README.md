@@ -222,9 +222,106 @@ workflows:
 
 In this example, as soon as the build job finishes successfully, all four acceptance test jobs start. The deploy job must wait for all four acceptance test jobs to complete successfully before it starts.
 
+### Building a CI/CD pipeline with Docker
+
+One of the benefits of using a CI/CD pipeline is that you are alb to do test on commit-ed code before being pushed into production.
+
+### Testing Code
+
+All code must be tested to ensure that high quality, stable code is being released to the public. Python comes with a testing framework named unittest and I’ll be using that for this post
+
+test.py
+```
+import unittest
+import app
+
+class TestDockerapp(unittest.TestCase):
+
+    def setUp(self):                      # Setup/initializes a test version of our Docker app
+        self.app = app.app.test_client()
+
+    def test_save_value(self):            # Method used to test submit function
+        response = self.app.post('/', data=dict(submit='save', key='2', cache_value='two'))
+        assert response.status_code == 200
+        assert b'2' in response.data
+        assert b'two' in response.data
+
+    def test_load_value(self):           # Method used to test load function
+        self.app.post('/', data=dict(submit='save', key='2', cache_value='two'))
+        response = self.app.post('/', data=dict(submit='load', key='2'))
+        assert response.status_code == 200
+        assert b'2' in response.data
+        assert b'two' in response.data
+
+if __name__=='__main__':
+    unittest.main()
+```
+
+### Implement a CI/CD pipeline
+
+Once your project is set up in the CircleCI platform, any commits pushed upstream will be detected and CircleCI will execute the job defined in your config.yml file.
+
+You will need to create a new directory in the repo’s root and a yaml file within this new directory. The new assets must follow these naming schema - directory: .circleci/ file: config.yml in your project’s git repository. This directory and file basically define your CI/CD pipeline and configuration for the CircleCI platform.
+
+The jobs: key represents a list of jobs that will be run. A job encapsulates the actions to be executed. If you only have one job to run then you must give it a key name build: you can get more details about jobs and builds here.
+
+
+.circke/config.yml
+```
+version: 2
+jobs:
+  build:
+    working_directory: /dockerapp
+    docker:
+      - image: docker:17.05.0-ce-git
+    steps:
+      - checkout
+      - setup_remote_docker
+      - run:
+          name: Install dependencies
+          command: |
+            apk add --no-cache py-pip=9.0.0-r1
+            pip install docker-compose==1.15.0
+      - run:
+          name: Run tests
+          command: |
+            docker-compose up -d
+            docker-compose run dockerapp python test.py
+      - deploy:
+          name: Push application Docker image
+          command: |
+            docker login -u $DOCKER_HUB_USER_ID -p $DOCKER_HUB_PWD
+            docker tag dockerapp_dockerapp $DOCKER_HUB_USER_ID/dockerapp:$CIRCLE_SHA1
+            docker tag dockerapp_dockerapp $DOCKER_HUB_USER_ID/dockerapp:latest
+            docker push $DOCKER_HUB_USER_ID/dockerapp:$CIRCLE_SHA1
+            docker push $DOCKER_HUB_USER_ID/dockerapp:latest
+```
+
+The build: key is composed of a few elements:
+
+    docker:
+    steps:
+
+The docker: key tells CircleCI to use a Docker executor, which means our build will be executed using Docker containers.
+
+image: circleci/docker:17.05.0.-ce-git
+
+steps:
+
+The steps: key is a collection that specifies all of the commands that will be executed in this build. The first action that happens the - checkout command that basically performs a git clone of your code into the build environment.
+
+The - run: keys specify commands to execute within the build. Run keys have a name: parameter where you can label a grouping of commands. For example name: Run Tests groups the test related actions which helps organize and display build data within the CircleCI dashboard.
+
+Each run block is equivalent to separate/individual shells or terminals. Commands that are configured or executed will not persist in later run blocks.
+
+ `Install dependencies`  `run` command installs the needed package dependencies
+ `Run tests` build the container and runs tests from test.py onto `dockerapp`
+ `Push application Docker image` tags the app and pushes it to `DockerHub`
+
 ### Online Resources:
 
   - [Circle CI Builds](https://circleci.com/docs/2.0/project-build/#section=getting-started)
   - [Circle CI Jobs/Steps/Workflows](https://circleci.com/docs/2.0/jobs-steps/#section=getting-started)
   - [Circle CI using Workspaces for jobs](https://circleci.com/docs/2.0/workflows/#using-workspaces-to-share-data-among-jobs)
   - [Circle CI building Docker Images](https://circleci.com/docs/2.0/building-docker-images/)
+  - [CI/CD pipeline with Docker](https://circleci.com/blog/build-cicd-piplines-using-docker/)
