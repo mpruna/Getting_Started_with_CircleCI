@@ -130,6 +130,12 @@ Workflows may appear with one of the following states:
 
 ![IMG](https://github.com/mpruna/Getting_Started_with_CircleCI/blob/master/images/circle_ci_builds.png)
 
+### Failed jobs due to a deprecated parameter:
+![IMG](https://github.com/mpruna/Getting_Started_with_CircleCI/blob/master/images/circle_ci_failed.png)
+
+### Successfull job:
+![IMG](https://github.com/mpruna/Getting_Started_with_CircleCI/blob/master/images/circle_ci_success.png)
+
 The following sample .circleci/config.yml file shows the default workflow orchestration with two parallel jobs. It is defined by using the workflows: key named build_and_test and by nesting the jobs: key with a list of job names. The jobs have no dependencies defined, therefore they will run in parallel.
 
 ```
