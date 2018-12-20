@@ -4,7 +4,7 @@
 
 `CircleCI` is Continuous Integration, a development practice which is being used by software teams allowing them to to build, test and deploy applications easier and quicker on multiple platforms.
 
-![IMG](Circle_CI.png)
+![IMG](https://github.com/mpruna/Getting_Started_with_CircleCI/blob/master/images/Circle_CI.png)
 
 ### What is Continuous Integration?
 
@@ -16,7 +16,7 @@ a defect is introduced into the code base, it can be identified and
 corrected as soon as possible.
 
 
-![IMG](CI_pipeline.png)
+![IMG](https://github.com/mpruna/Getting_Started_with_CircleCI/blob/master/images/CI_pipeline.png)
 
 ### Projects and Builds
 
@@ -45,7 +45,7 @@ Jobs are a collection of Steps. All of the steps in the job are executed in a si
 
 Jobs and Steps enable greater control and provide a framework for workflows and status on each phase of a run to report more frequent feedback. The following diagram illustrates how data flows between jobs. Workspaces persist data between jobs in a single Workflow. Caching persists data between the same job in different Workflow builds. Artifacts persist data after a Workflow has finished.
 
-![IMG](circle_workflows.png)
+![IMG](https://github.com/mpruna/Getting_Started_with_CircleCI/blob/master/images/circle_workflows.png)
 
 In 2.0 Jobs can be run using the machine executor which enables reuse of recently used machine executor runs, or the docker executor which can compose Docker containers to run your tests and any services they require, such as databases, or the macos executor.
 
