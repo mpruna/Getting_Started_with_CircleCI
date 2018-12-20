@@ -35,7 +35,7 @@ Following a project enables a user to subscribe to email notifications for the p
 
 Your build appears on the Jobs page of the CircleCI app when a new commit is pushed to your repository. If you do not see your jobs building on the Jobs page when you push config changes, check the Workflows tab of the CircleCI app to find out how to update your config to enable builds.
 
-![IMG](circle_ci_jobs.png)
+![IMG](https://github.com/mpruna/Getting_Started_with_CircleCI/blob/master/images/circle_builds.png)
 
 ### Jobs, Steps, and Workflows:
 
@@ -128,6 +128,8 @@ Workflows may appear with one of the following states:
   - ON HOLD: A job in the workflow is waiting for approval
   - NEEDS SETUP: A workflow stanza is not included or is incorrect in the config.yml file for this project
 
+![IMG](https://github.com/mpruna/Getting_Started_with_CircleCI/blob/master/images/circle_ci_builds.png)
+
 The following sample .circleci/config.yml file shows the default workflow orchestration with two parallel jobs. It is defined by using the workflows: key named build_and_test and by nesting the jobs: key with a list of job names. The jobs have no dependencies defined, therefore they will run in parallel.
 
 ```
@@ -157,7 +159,7 @@ workflows:
 
 The jobs run according to configured requirements, each job waiting to start until the required job finishes successfully as illustrated in the diagram
 
-![IMG]()
+![IMG](https://github.com/mpruna/Getting_Started_with_CircleCI/blob/master/images/sequential_job_execution.png)
 
 The following config.yml snippet is an example of a workflow configured for sequential job execution:
 
@@ -184,7 +186,7 @@ The dependencies are defined by setting the requires: key as shown. The deploy: 
 
 The illustrated example workflow runs a common build job, then fans-out to run a set of acceptance test jobs in parallel, and finally fans-in to run a common deploy job
 
-![IMG]()
+![IMG](https://github.com/mpruna/Getting_Started_with_CircleCI/blob/master/images/parallel_execution.png)
 
 ```
 workflows:
