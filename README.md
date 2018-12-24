@@ -318,69 +318,70 @@ Each run block is equivalent to separate/individual shells or terminals. Command
  `Run tests` build the container and runs tests from test.py onto `dockerapp`
  `Push application Docker image` tags the app and pushes it to `DockerHub`
 
+
+
 ## `Circle CI` versus Jenkins:
 
 ### Circle CI
 
 ### Features :
 
-    CircleCI is a cloud-based system — no dedicated server required, and you do not need to administrate it. However, it also offers an on-prem solution that allows you to run it in your private cloud or data center.
-    It has a free plan even for a business account
-    Rest API — you have an access to projects, build and artifacts The result of the build is going to be an artifact or the group of artifacts. Artifacts could be a compiled application or executable files (e.g. android APK) or metadata (e.g. information about the tests`success`)
-    CircleCI caches requirements installation. It checks 3rd party dependencies instead of constant installations of the environments needed
-    You can trigger SSH mode to access container and make your own investigation (in case of any problems appear)
+  - CircleCI is a cloud-based system — no dedicated server required, and you do not need to administrate it. However, it also offers an on-prem solution that allows you to run it in your private cloud or data center.
+  - It has a free plan even for a business account
+  - Rest API — you have an access to projects, build and artifacts The result of the build is going to be an artifact or the group of artifacts. Artifacts could be a compiled application or executable files (e.g. android APK) or metadata (e.g. information about the tests`success`)
+  - CircleCI caches requirements installation. It checks 3rd party dependencies instead of constant installations of the environments needed
+  - You can trigger SSH mode to access container and make your own investigation (in case of any problems appear)
     That’s a complete out of a box solution that needs minimal configuration\adjustments
 
 ### CircleCI is compatible with:
 
-    Python, Node.js, Ruby, Java, Go, etc
-    Ubuntu (12.04, 14.04), Mac OS X (paid accounts)
-    Github, Bitbucket
-    AWS, Azure, Heroku, Docker, dedicated server
-    Jira, HipChat, Slack
+  - Python, Node.js, Ruby, Java, Go, etc
+  - Ubuntu (12.04, 14.04), Mac OS X (paid accounts)
+  - Github, Bitbucket
+  - AWS, Azure, Heroku, Docker, dedicated server
+  - Jira, HipChat, Slack
 
 ### CircleCI Pros:
 
-    Fast start
-    CircleCI has a free plan for enterprise projects
-    It’s easy and fast to start
-    Lightweight, easily readable YAML config
-    You do not need any dedicated server to run CircleCI
+  - Fast start
+  - CircleCI has a free plan for enterprise projects
+  - It’s easy and fast to start
+  - Lightweight, easily readable YAML config
+  - You do not need any dedicated server to run CircleCI
 
 ### CircleCI Cons:
 
-    CircleCI supports only 2 versions of Ubuntu for free (12.04 и 14.04) and MacOS as a paid part
-    Despite the fact CircleCI do work with and run on all languages tt supports only the following programming languages “out of the box”:
+  - CircleCI supports only 2 versions of Ubuntu for free (12.04 и 14.04) and MacOS as a paid part
+  - Despite the fact CircleCI do work with and run on all languages tt supports only the following programming languages “out of the box”:
+    - Go (Golang), Haskell, Java, PHP, Python, Ruby/Rails, Scala
 
-Go (Golang), Haskell, Java, PHP, Python, Ruby/Rails, Scala
-
-    Some problems may appear in case you would like to make customizations: you may need some 3rd party software to make those adjustments
-    Also, while being a cloud-based system is a plus from one side, it can also stop supporting any software, and you won’t be able to prevent that
+  - Some problems may appear in case you would like to make customizations: you may need some 3rd party software to make those adjustments
+  - Also, while being a cloud-based system is a plus from one side, it can also stop supporting any software, and you won’t be able to prevent that
 
 ### Jenkins
 
 ### Features:
 
-    Jenkins is a self-contained Java-based program, ready to run out-of-the-box, with packages for Windows, Mac OS X and other Unix-like operating systems
-    With hundreds of plugins in the Update Center, Jenkins integrates with practically every tool in the continuous integration and continuous delivery toolchain
-    Jenkins can be extended via its plugin architecture, providing nearly infinite possibilities for what Jenkins can do
-    Various job modes: Freestyle project, Pipeline, External Job, Multi-configuration project, Folder, GitHub Organization, Multibranch Pipeline
-    Jenkins Pipeline. That’s a suite of plugins which supports implementing and integrating continuous delivery pipelines into Jenkins. Pipeline provides an extensible set of tools for modeling simple-to-complex delivery pipelines “as code” via the Pipeline DSL
-    Allows you to launch builds with various conditions.
-    You can run Jenkins with Libvirt, Kubernetes, Docker, and others.
-    Rest API — have access to Controlling the amount of data you fetch, Fetch/Update config.xml, Delete a job, Retrieving all builds, Fetch/Update job description, Perform a build, Disable/Enable a job
+  - Jenkins is a self-contained Java-based program, ready to run out-of-the-box, with packages for Windows, Mac OS X and other Unix-like operating systems
+  - With hundreds of plugins in the Update Center, Jenkins integrates with practically every tool in the continuous integration and continuous delivery toolchain
+  - Jenkins can be extended via its plugin architecture, providing nearly infinite possibilities for what Jenkins can do
+  - Various job modes: Freestyle project, Pipeline, External Job, Multi-configuration project, Folder, GitHub Organization, Multibranch Pipeline
+  - Jenkins Pipeline. That’s a suite of plugins which supports implementing and integrating continuous delivery pipelines into Jenkins. Pipeline provides an extensible set of tools for modeling simple-to-complex delivery pipelines “as code” via the Pipeline DSL
+  - Allows you to launch builds with various conditions.
+  - You can run Jenkins with Libvirt, Kubernetes, Docker, and others.
+  - Rest API — have access to Controlling the amount of data you fetch, Fetch/Update config.xml, Delete a job, Retrieving all builds, Fetch/Update job description, Perform a build, Disable/Enable a job
 
 ### Jenkins Pros:
 
-    Price (it’s free)
-    Customization
-    Plugins system
-    Full control of the system
+  - Price (it’s free)
+  - Customization
+  - Plugins system
+  - Full control of the system
 
 ### Jenkins Cons:
 
-    Dedicated server (or several servers) are required. That results in additional expenses. For the server itself, DevOps, etc…
-    Time needed for configuration / customization    
+  - Dedicated server (or several servers) are required. That results in additional expenses. For the server itself, DevOps, etc…
+  - Time needed for configuration / customization    
 
 ### Online Resources:
 
